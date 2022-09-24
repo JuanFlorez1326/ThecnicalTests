@@ -1,0 +1,22 @@
+<div class="card-container">
+    <div class="card"  *ngFor="let pqrs of pqr">
+        <div class="container-image-card">
+            <img src="https://amisalud.com.co/wp-content/uploads/2019/08/pqrs.jpg" alt="PQRS">
+            <p class="link-image-card">Imagen tomada de: <a href="https://amisalud.com.co/pqrs-2/" target="_blank">amisalud.com.co</a></p>
+        </div>
+        <div class="card-body">
+            <div class="card-header">
+                <h4>{{pqrs.title}}</h4>
+            </div>
+            <div class="container-card-body">
+                <p><b>Estado:</b>  {{pqrs.ticket_status}}</p>
+                <p><b>Tipo PQR:</b> {{pqrs.ticket_type}} </p>
+                <p class="card-body-description"><b>Descripcion:</b> {{pqrs.description}}</p>
+                <p class="card-date-pqr"><b>Fecha de Creacion:</b> {{pqrs.ticket_creation_date | date: 'yyyy-MM-dd'}}</p>
+            </div>
+            <div class="container-card-btns">
+                <button class="btn btn-delete-group" (click)="deletePqr(pqrs.id_pqr)">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>

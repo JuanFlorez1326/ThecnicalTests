@@ -1,0 +1,48 @@
+<div class="container-form-user">
+    <form class="form-user">
+        <h3 class="form-title-user">Registro</h3>
+
+        <div class="form-group">
+            <label>Nombres</label><br>
+            <input [(ngModel)]="user.names" type="text" class="form-control" id="name" placeholder="Ingrese los nombres" name="names">
+        </div>
+
+        <div class="form-group">
+            <label>Apellidos</label><br>
+            <input [(ngModel)]="user.surnames"  type="text" class="form-control" id="email" placeholder="Ingrese los apellidos" name="surnames">
+        </div>
+
+        <div class="form-group">
+            <label>Tipo de Documento</label><br>
+            <select name="type_id" id="type_id" class="form-control" [(ngModel)]="user.type_id" >
+                <option value="Cedula de Ciudadania">Cedula de Ciudadania</option>
+                <option value="Tarjeta de Identidad">Tarjeta de Identidad</option>
+                <option value="Cedula de Extranjeria">Cedula de Extranjeria</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Numero de Documento</label><br>
+            <input [(ngModel)]="user.number_id"  type="number" class="form-control" id="id" placeholder="Ingrese el numero" name="id">
+        </div>
+
+        <div class="form-group">
+            <label>Telefono Movil</label><br>
+            <input [(ngModel)]="user.mobile_phone"  type="number" class="form-control" id="mobile-phone" placeholder="Ingrese el numero" name="mobile_phone">
+        </div>
+
+        <div class="form-group">
+            <label>Telefono Fijo</label><br>
+            <input [(ngModel)]="user.landline"  type="number" class="form-control" id="landline" placeholder="Ingrese el numero" name="landline">
+        </div>
+
+        <div class="form-group">
+            <label>Correo Electronico</label><br>
+            <input [(ngModel)]="user.email"  type="email" class="form-control" id="email" placeholder="Ingrese el correo" name="email">
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-form-user" (click)="saveNewUser()">Registrarse</button>
+        </div>
+    </form>
+</div>

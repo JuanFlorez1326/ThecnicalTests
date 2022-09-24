@@ -1,0 +1,104 @@
+.container-form-createpqr {
+    background-color:#d9d9d9;
+    width:550px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    margin:5% auto;
+    border-radius:5px;
+    box-shadow: 2px 2px 95px -8px rgba(0,0,0,0.79) inset;
+    -webkit-box-shadow: 2px 2px 95px -8px rgba(0,0,0,0.79) inset;
+    -moz-box-shadow: 2px 2px 95px -8px rgba(0,0,0,0.79) inset;
+}
+
+.form-title-pqr {
+    font-size: 2em;
+    font-weight: bold;
+    margin: 10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.pqr-form {
+    padding: 15px;
+    margin: 0 auto;
+    width: 50%;
+}
+.btn-form-pqr {
+    margin:auto;
+    padding:8px;
+    color: #ffffff;
+    font-weight:bold;
+    width: 50%;
+    background-color: #208b3a;
+    border:none;
+    border-radius:5px;
+    outline:1.5px solid #10451d;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition: all 300ms ease 0ms;
+}
+.btn-form-pqr:hover {
+    background-color: #386641;
+    transform: translateY(-7px);
+    cursor: pointer;
+}
+
+.form-control{
+    width: 100%;
+    margin-bottom: 5px;
+    padding:7px 0px 7px 5px;
+}
+
+.form-group {
+    margin-bottom: 10px;
+    width:100%;
+}
+#form-group-typepqr {
+    width: 102.7%;
+}
+
+
+@media screen and (min-width: 620px) and (max-width: 735px) {
+    .container-form-createpqr {
+        width:550px;
+    }
+}
+
+@media screen and (min-width: 500px) and (max-width: 620px) {
+    .container-form-createpqr {
+        width:400px;
+    }
+}
+
+@media screen and (min-width: 415px) and (max-width: 500px) {
+    .container-form-createpqr {
+        width:400px;
+    }
+}
+
+@media screen and (min-width: 300px) and (max-width: 415px) {
+    .container-form-createpqr {
+        width:350px;
+        margin-top:10%;
+        margin-bottom:10%;
+    }
+    .form-title-pqr {
+        font-size: 20px;
+    }
+    .pqr-form {
+        width: 80%;
+    }
+    #form-group-typepqr {
+        width: 102.7%;
+    }
+}
+
+@media screen and (min-width: 300px) and (max-width: 350px) {
+    .container-form-createpqr {
+        width:300px;
+    }
+}
