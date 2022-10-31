@@ -1,0 +1,52 @@
+<section class="register">
+  <form
+    [formGroup]="loginForm"
+    (ngSubmit)="saveForm($event)"
+    class="register__Form"
+  >
+    <div class="register__FormHeader">
+      <img alt="logo" src="../../../../assets/logo.svg" />
+    </div>
+    <div class="register__FormBody">
+      <div class="register__FormInput">
+        <div class="register__image" >
+          <img src="../../../../assets/login-image.svg" alt="login-logo">
+        </div>
+        <label>Usuario</label>
+        <input type="text" placeholder="usuario" formControlName="username" />
+        <div
+          class="register__FormInputError"
+          *ngIf="
+            loginForm.get('username')?.errors &&
+            loginForm.get('username')?.touched
+          "
+        >
+          <img alt="alert" src="../../../../assets/alert-circle.svg" />
+          <small
+            >Usuario escrito con solo letras y numeros sin espacios y sin
+            simbolos en todo minuscula</small
+          >
+        </div>
+      </div>
+
+      <div class="register__FormInput">
+        <label>Contraseña</label>
+        <input
+          type="password"
+          placeholder="contraseña"
+          formControlName="password"
+        />
+      </div>
+    </div>
+    <div class="register__FormFooter">
+      <button [disabled]="loginForm.invalid" type="submit">
+        Iniciar sesión
+      </button>
+      <div class="register__FooterRedirect">
+        <p>no tienes cuenta ?</p>
+        <a routerLink="/home/signup" routerLinkActive="active">Registrame</a>
+      </div>
+       
+    </div>
+  </form>
+</section>

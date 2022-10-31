@@ -1,0 +1,9 @@
+<article class="item">
+    <p>{{id}}</p>
+    <p>{{price}}</p>
+    <p>{{name | falsyItem:'N/A'}}</p>
+    <p>{{buyer | falsyItem:'N/A'}}</p>
+    <p>{{invoiceDate | date}}</p>
+    <p>{{invoiceCreationDate | date}}</p>
+    <p [ngClass]="status | statusToClass">{{status | statusToDisplay}}</p>
+</article> 

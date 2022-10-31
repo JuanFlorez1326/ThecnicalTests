@@ -1,0 +1,65 @@
+<section class="register">
+  <form
+    [formGroup]="registerForm"
+    (ngSubmit)="saveForm($event)"
+    class="register__Form"
+  >
+    <div class="register__FormHeader">
+      <img alt="logo" src="../../../../assets/logo.svg" />
+    </div>
+    <div class="register__FormBody">
+      <div class="register__FormInput">
+        <label>Usuario</label>
+        <input
+          type="text"
+          placeholder="Escribe tu nuevo usuario"
+          formControlName="username"
+        />
+        <div
+          class="register__FormInputError"
+          *ngIf="
+            registerForm.get('username')?.errors &&
+            registerForm.get('username')?.touched
+          "
+        >
+          <img alt="alert" src="../../../../assets/alert-circle.svg" />
+          <small
+            >Usuario escrito con solo letras y numeros sin espacios y sin
+            simbolos en todo minuscula</small
+          >
+        </div>
+      </div>
+
+      <div class="register__FormInput">
+        <label>Contraseña</label>
+        <input type="password" placeholder="email" formControlName="password" />
+      </div>
+      <div class="register__FormInput">
+        <label>Verificar contraseña</label>
+        <input
+          type="password"
+          placeholder="contraseña"
+          formControlName="verifyPassword"
+        />
+        <div
+          class="register__FormInputError"
+          
+        >
+          <img alt="alert" src="../../../../assets/alert-circle.svg" />
+          <small>La contraseña no coincide</small>
+        </div>
+      </div>
+    </div>
+    <div class="register__FormFooter">
+      <button [disabled]="registerForm.invalid" type="submit">
+        Registrarme
+      </button>
+      <div class="register__FooterRedirect">
+        <p>ya estas resgistrado ?</p>
+        <a routerLink="/home/signin" routerLinkActive="active"
+          >Iniciar sesión</a
+        >
+      </div>
+    </div>
+  </form>
+</section>

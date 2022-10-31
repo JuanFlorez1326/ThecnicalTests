@@ -1,0 +1,51 @@
+@import "./variables";
+
+%commonButton {
+  background: $primary-color;
+  color: $secondary-color;
+  border: none;
+  border-radius: 5px;
+  padding: 0.75em;
+  font-family: poppins;
+  font-weight: bolder;
+  font-size: 15px;
+  transition: all 0.3 ease;
+  cursor: pointer;
+
+  &:disabled {
+    filter: grayscale(100%);
+  }
+}
+
+%commonInput {
+  padding: 0.75em;
+  border-radius: 5px;
+  border: 0.1px solid $tertiary-color;
+  color: #111010;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+%iconButton {
+  width: 200px;
+  gap: 0.5em;
+  display: flex;
+  align-items: center;
+  padding: 0.5em 1em;
+  border-radius: 5px;
+  cursor: pointer;
+  border: 1px solid $text-color;
+  background: $secondary-color;
+  transition: all .25s ease-in-out;
+
+  &:focus {
+    outline: none;
+    border: solid 1px $text-color;
+  }
+
+ &:hover{
+  transform: scale(103%);
+ } 
+}

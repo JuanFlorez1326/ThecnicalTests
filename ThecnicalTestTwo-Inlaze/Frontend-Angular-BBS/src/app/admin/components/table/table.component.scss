@@ -1,0 +1,59 @@
+@import "../../../../scss/blocks.scss";
+
+.filters {
+  padding: 1em 2em;
+  font-family: poppins;
+
+  &__section {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+  }
+
+  &__title {
+    font-size: 24px;
+  }
+
+  &__form {
+    display: flex;
+    padding: 1em;
+    gap: 1em;
+  }
+
+  &__clean {
+    @extend %iconButton;
+  }
+}
+
+.scroll-box {
+    width: 100vw;
+    overflow: auto;
+}
+
+.table {
+  width: 100rem;
+  margin: 1.2rem;
+
+  header {
+    display: grid;
+    font-family: poppins;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    background-color: rgb(213, 213, 213);
+    color: rgb(103, 103, 103);
+    font-weight: bold;
+    text-align: center;
+  }
+}
+.send-container{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1em;
+    width: 250px;
+    padding: 1em;
+}
+
+.send-data{
+    @extend %commonButton;
+    width: 200px;
+}

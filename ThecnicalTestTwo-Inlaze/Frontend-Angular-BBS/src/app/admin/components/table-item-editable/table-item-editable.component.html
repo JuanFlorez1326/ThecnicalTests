@@ -1,0 +1,16 @@
+<article [formGroup]="productData" class="item">
+  <p></p>
+  <div class="currency-input">
+      <select formControlName="currency" class="data-field">
+        <option  *ngFor="let option of currencyOptions" [value]="option.value">{{option.label}}</option>
+      </select>
+      <input formControlName="price" class="data-field" type="number" placeholder="Precio" />
+  </div>
+  <p></p>
+  <input formControlName="name" class="data-field" type="text" placeholder="Nombre del producto" />
+  <p></p>
+  <p></p>
+  <select formControlName="status" class="data-field" name="" id="">
+    <option *ngFor="let option of statusOptions" [value]="option.value">{{option.label}}</option>
+  </select>
+</article>

@@ -1,0 +1,26 @@
+@import '../../../../scss/variables';
+
+.item{
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    border-bottom: solid 1px $tertiary-color;
+    margin: 1em 0;
+    text-align: center;
+    font-family: poppins;
+}
+
+.item > p {
+
+
+    &.for_sale {
+        color: greenyellow;
+    }
+
+    &.sold {
+        color: crimson;
+    }
+
+    &.soon {
+        color: chocolate;   
+    }
+}

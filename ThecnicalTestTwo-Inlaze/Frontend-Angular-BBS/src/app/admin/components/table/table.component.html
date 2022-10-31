@@ -1,0 +1,35 @@
+<section class="filters">
+    <article class="filters__section">
+        <h2 class="filters__title">Productos</h2>
+        <form class="filters__form">
+            <input type="radio" ><span>Vendidos</span>
+            <input type="radio" ><span>En venta</span>
+            <input type="radio" ><span>Pendiente</span>
+        </form>
+    </article>
+        <button class="filters__clean">
+            <img src="../../../../assets/magicpen.svg" alt="magicpen">
+            Vaciar busqueda
+        </button>
+</section>
+    <div class="scroll-box">
+        <section class="table">
+            <header>
+                <p>id</p>
+                <p>Precio</p>
+                <p>Nombre Comprador</p>
+                <p>Nombre Producto</p>
+                <p>Fecha factura</p>
+                <p>Fecha creacion Factura</p>
+                <p>Estado de producto</p>
+            </header>
+            <main>
+                <app-table-item>
+                </app-table-item>
+                <app-table-item-editable></app-table-item-editable>
+            </main>
+        </section>
+    </div>
+<div class="send-container">
+    <button (click)="saveItem()" class="send-data">agregar producto</button>
+</div>
