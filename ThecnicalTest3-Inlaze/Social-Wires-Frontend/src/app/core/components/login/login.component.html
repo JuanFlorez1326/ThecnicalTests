@@ -1,0 +1,52 @@
+<section class="reg_content">
+  <div class="container-image">
+    <img class="register-image" src="../../../../assets/image/image2.png" alt="Wires">
+    <p class="message-image">Welcome To Wires</p>
+  </div>
+    <p class="register__title">Sign Up</p>
+    <form 
+      class="register"
+      [formGroup]="loginForm"
+      (ngSubmit)="sendUserLogin($event)"
+    >
+    <div class="register__input">
+      <label for="">Email Adress</label>
+      <input
+        type="email"
+        placeholder="Example@gmail.com"
+        formControlName="email"
+      />
+
+      <p
+        *ngIf="
+          loginForm.get('email')?.errors &&
+          loginForm.get('email')?.touched
+        "
+      >
+        <small>Este campo es requerido</small>
+      </p>
+    </div>
+
+      <div class="register__input">
+        <label for="">password</label>
+        <input 
+          type="password" 
+          name="" 
+          placeholder="********" 
+          formControlName="password">
+        <p
+          *ngIf="
+            loginForm.get('password')?.errors &&
+            loginForm.get('password')?.touched
+          "
+        >
+          <small>Este campo es requerido</small>
+        </p>
+      </div>
+
+      <button type="submit" [disabled]="loginForm.invalid">
+        Sign in
+      </button>
+    </form>
+</section>
+<app-footer></app-footer>

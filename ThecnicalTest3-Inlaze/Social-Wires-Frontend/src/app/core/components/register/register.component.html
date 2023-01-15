@@ -1,0 +1,80 @@
+<section class="reg_content">
+  <div class="container-image">
+    <img class="register-image" src="../../../../assets/image/image2.png" alt="Wires">
+    <p class="message-image">Welcome To Wires</p>
+  </div>
+  <p class="register__title">Sign In</p>
+  <form
+    [formGroup]="registerForm"
+    class="register"
+    (ngSubmit)="sendUser($event)"
+  >
+    <div class="register__input">
+      <label for="">Nickname</label>
+      <input type="text" placeholder="Nickname" formControlName="username" />
+
+      <p
+        *ngIf="
+          registerForm.get('username')?.errors &&
+          registerForm.get('username')?.touched
+        "
+      >
+        <small>Este campo es requerido.</small>
+      </p>
+    </div>
+
+    <div class="register__input">
+      <label for="">FullName</label>
+      <input type="text" placeholder="Full Name" formControlName="fullName" />
+
+      <p
+        *ngIf="
+          registerForm.get('fullName')?.errors &&
+          registerForm.get('fullName')?.touched
+        "
+      >
+        <small>Este campo es requerido</small>
+      </p>
+    </div>
+    
+    <div class="register__input">
+      <label for="">Email Adress</label>
+      <input
+        type="email"
+        placeholder="Example@gmail.com"
+        formControlName="email"
+      />
+
+      <p
+        *ngIf="
+          registerForm.get('email')?.errors &&
+          registerForm.get('email')?.touched
+        "
+      >
+        <small>Este campo es requerido</small>
+      </p>
+    </div>
+
+    <div class="register__input">
+      <label for="">password</label>
+      <input
+        type="password"
+        name=""
+        placeholder="********"
+        formControlName="password"
+      />
+      <p
+        *ngIf="
+          registerForm.get('password')?.errors &&
+          registerForm.get('password')?.touched
+        "
+      >
+        <small>Este campo es requerido</small>
+      </p>
+    </div>
+    <button type="submit" [disabled]="registerForm.invalid">
+      Create
+    </button>
+  </form>
+</section>
+<app-footer></app-footer>
