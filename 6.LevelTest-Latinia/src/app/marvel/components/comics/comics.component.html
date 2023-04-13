@@ -1,0 +1,39 @@
+<mat-grid-list cols="1" *ngIf="!comics; else seeComics">
+    <mat-spinner></mat-spinner>
+</mat-grid-list>
+
+<ng-template #seeComics >
+    <div class="container-title-comics">
+        <h1>Comics</h1>
+    </div>
+    <div 
+        class="container-formats"
+    >
+        <button
+            mat-button color="warn"
+            *ngFor="let item of formats"
+            class="bnt-filter"
+            (click)="emitFormat(item)"
+        >
+            {{ item | titlecase }}
+        </button>
+    </div>
+    <div class="container">
+        <div 
+            class="card-comic"
+            *ngFor="let comic of comics"
+        >
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>{{ comic.title }}</mat-card-title>
+                </mat-card-header>
+            
+                <img class="image-comic" src="{{comic.thumbnail.path}}.{{comic.thumbnail.extension}}" [alt]="comic.title">
+            
+                <mat-card-content>
+                    <h2>{{ comic.modified | date: 'mediumDate' }}</h2>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</ng-template>
