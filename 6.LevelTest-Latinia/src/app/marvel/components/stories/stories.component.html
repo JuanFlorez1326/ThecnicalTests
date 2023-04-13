@@ -3,13 +3,13 @@
 </div>
 
 <div class="container-cards-stories">
-    <mat-card class="card-stories" *ngFor="let item of stories; let i = index">
+    <mat-card class="card-stories" *ngFor="let story of stories$; let i = index">
         <mat-card-header>
             <mat-card-title> Story {{ i + 1}} </mat-card-title>
-            <mat-card-subtitle> {{ item.modified | date: 'longDate' }} </mat-card-subtitle>
+            <mat-card-subtitle> {{ story.modified | date: 'longDate' }} </mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
-            <span> {{ item.originalIssue.name }} </span>
+            <span> {{ story.originalIssue.name }} </span>
         </mat-card-content>
     </mat-card>
 </div>

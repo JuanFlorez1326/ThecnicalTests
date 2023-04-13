@@ -11,6 +11,10 @@ import { MarvelRoutingModule } from './marvel-routing.module';
 import { StoriesComponent } from './components/stories/stories.component';
 import { CardCharactersComponent } from './components/card-characters/card-characters.component';
 import { TableCharactersComponent } from './components/table-characters/table-characters.component';
+import { EffectsModule } from '@ngrx/effects';
+import { CharactersEffects } from './marvel-store/characters/characters.effects';
+import { StoriesEffects } from './marvel-store/stories/stories.effects';
+import { ComicsEffects } from './marvel-store/comics/comics.effects';
 
 @NgModule({
   declarations: [
@@ -26,7 +30,12 @@ import { TableCharactersComponent } from './components/table-characters/table-ch
     RouterModule,
     ReactiveFormsModule,
     MarvelRoutingModule,
-    MaterialModule
+    MaterialModule,
+    EffectsModule.forFeature([
+      CharactersEffects,
+      StoriesEffects,
+      ComicsEffects
+    ])
   ]
 })
 export class MarvelModule {}

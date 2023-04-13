@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, Subscription, map } from 'rxjs';
-import { Store } from '@ngrx/store';
 
-import { MarvelService } from '../../services/marvel.service';
 import { ResultCharacter } from '../../interfaces/characters.interface';
-import { loadCharactersSuccess } from '../../marvel-state/actions/character.actions';
-import { MarvelState } from '../../marvel-state/character.state';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { selectCharacters } from '../../marvel-state/selectors/character.selectors';
+import { Store } from '@ngrx/store';
+import { MarvelState } from '../../marvel-store/marvel.state';
+import { LoadCharacters } from '../../marvel-store/characters/characters.actions';
+import  * as fromReducers  from '../../marvel-store/characters/characters.reducers';
+import { DisplayedColumns } from '../../components/table-characters/display-columns';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-home',
@@ -17,9 +18,8 @@ import { selectCharacters } from '../../marvel-state/selectors/character.selecto
 export class HomeComponent implements OnInit  {
 
   constructor(
-    private readonly marvelService: MarvelService,
-    private readonly store: Store<MarvelState>,
-    private readonly formBuilder: FormBuilder
+    private readonly formBuilder: FormBuilder,
+    private readonly store: Store<MarvelState>
   ) {
     this.buildForm();
     this.searchForm.valueChanges.subscribe( form => {
@@ -32,13 +32,13 @@ export class HomeComponent implements OnInit  {
   limit!: number;
   nameStartsWith!: string;
   showTable: boolean =  true ? true : false;
-  subscription: Subscription = new Subscription();
+  displayedColumns: string[] = Object.values(DisplayedColumns);
   alphanumericRegex: RegExp = /^[a-zA-Z0-9- .()]*$/;
-  characters$: Observable<any> = new Observable();
+  characters$: Observable<ResultCharacter[]> = new Observable<ResultCharacter[]>();
 
   ngOnInit(): void {
-    this.characters$ = this.store.select(selectCharacters);
-    this.allCharacters();
+    this.store.dispatch( new LoadCharacters())
+    this.characters$ = this.store.select( fromReducers.selectCharacters )
   }
 
   private buildForm(): void {
@@ -53,35 +53,19 @@ export class HomeComponent implements OnInit  {
       const { nameStartsWith, limit } = this.searchForm.value;
       this.nameStartsWith = nameStartsWith;
       this.limit = limit;
-      this.searchCharacters();
+      //this.searchCharacters();
     }
   }
 
-  allCharacters(): void {
-    this.subscription.add( 
-      this.marvelService.getAllCharacters()
-      .pipe< ResultCharacter[] > ( map( (res: any ) => res.data.results ) )
-      .subscribe(
-        ( characters: ResultCharacter[] ) => {
-          this.store.dispatch(loadCharactersSuccess({ characters: characters }));
-        }
-      )
-    );
-  }
-
-  searchCharacters(): void {
-    this.subscription.add( 
-      this.marvelService.searchCharacter(this.nameStartsWith, this.limit)
-      .pipe< ResultCharacter[] > ( map( (res: any ) => res.data.results ) )
-      .subscribe(
-        ( characters: ResultCharacter[] ) => {
-          this.store.dispatch(loadCharactersSuccess({ characters: characters }));
-        }
-      )
-    );
-  }
-
-  ngOnDestroy(): void {
-    if(this.subscription) this.subscription.unsubscribe();
-  }
+  // searchCharacters(): void {
+  //   this.subscription.add( 
+  //     this.marvelService.searchCharacter(this.nameStartsWith, this.limit)
+  //     .pipe< ResultCharacter[] > ( map( (res: any ) => res.data.results ) )
+  //     .subscribe(
+  //       ( characters: ResultCharacter[] ) => {
+  //         this.characters$ = characters;
+  //       }
+  //     )
+  //   );
+  // }
 }

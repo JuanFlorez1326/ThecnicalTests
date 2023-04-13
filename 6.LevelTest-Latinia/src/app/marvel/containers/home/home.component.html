@@ -56,12 +56,13 @@
 
 <div *ngIf="showTable">
     <app-search-results
-        [card-characters]="characters$"
+        [card-characters]="characters$ | async"
     ></app-search-results>
 </div>
 
 <div *ngIf="!showTable">
     <app-table-characters
-        [table-characters]="characters$"
+        [table-characters]="characters$ | async"
+        [displayedColumns]="displayedColumns"
     ></app-table-characters>
 </div>

@@ -1,9 +1,15 @@
 <div [routerLink]="['/marvel']">
-    <app-search-results></app-search-results><br>
+    <app-search-results
+        [card-characters]="characters$ | async"
+    ></app-search-results><br>
 </div>
+
 <mat-divider></mat-divider>
 
-<app-stories [stories]="stories"></app-stories>
+<app-stories 
+    [card-stories]="stories$ | async"
+></app-stories>
+
 <mat-divider></mat-divider><br>
 
 <app-comics

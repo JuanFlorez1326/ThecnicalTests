@@ -1,22 +1,28 @@
-import { ActivatedRoute } from '@angular/router';
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription, map, switchMap, Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { Subscription, map, switchMap } from 'rxjs';
 
 import { ApiResponse } from '../../interfaces/api-response.interface';
-import { loadCharactersSuccess, loadComicsSuccess, loadStoriesSuccess } from '../../marvel-state/actions/character.actions';
-import { Formats } from '../../components/comics/formats-comics';
-import { MarvelService } from '../../services/marvel.service';
-import { MarvelState } from '../../marvel-state/character.state';
-import { ResultComic } from '../../interfaces/comics.interface';
 import { ResultCharacter } from '../../interfaces/characters.interface';
 import { ResultStory } from '../../interfaces/stories.interface';
+import { ResultComic } from '../../interfaces/comics.interface';
+import { Formats } from '../../components/comics/formats-comics';
+
+import { MarvelState } from '../../marvel-store/marvel.state';
+import { LoadStories } from '../../marvel-store/stories/stories.actions';
+import { LoadCharacterById } from '../../marvel-store/characters/characters.actions';
+import  * as fromReducersStory  from '../../marvel-store/stories/stories.reducers';
+import * as fromReducersCharacter from '../../marvel-store/characters/characters.reducers';
+import { MarvelService } from '../../services/marvel.service';
+
 
 @Component({
   selector: 'app-detailed',
   templateUrl: './detailed.component.html'
 })
 export class DetailedComponent {
+
   constructor(
     private readonly marvelService: MarvelService,
     private readonly activatedRoute: ActivatedRoute,
@@ -24,16 +30,21 @@ export class DetailedComponent {
   ) { }
 
   comics: ResultComic[] = [];
-  stories: ResultStory[] = [];
-  character: ResultCharacter[] = [];
+  stories$: Observable<ResultStory[]> = new Observable<ResultStory[]>(); 
+  characters$: Observable<ResultCharacter[]> = new Observable<ResultCharacter[]>();
+  
   formats: string[] = Object.values(Formats);
   formatActive!: string;
   subscription: Subscription = new Subscription();
 
   ngOnInit(): void {
+    this.store.dispatch( new LoadStories( this.activatedRoute.snapshot.params['id']))
+    this.store.dispatch( new LoadCharacterById( this.activatedRoute.snapshot.params['id']))
+
+    this.stories$ = this.store.select( fromReducersStory.selectStories )
+    this.characters$ = this.store.select( fromReducersCharacter.selectCharacters )
+
     this.getComics();
-    this.getStories();
-    this.seeCharacter();
   }
 
   getComics(): void {
@@ -46,7 +57,6 @@ export class DetailedComponent {
       .subscribe(
         ( response: ResultComic[] ) => {
           this.comics = response;
-          this.store.dispatch(loadComicsSuccess({ comics: response }));
         }
       )
     );
@@ -65,39 +75,6 @@ export class DetailedComponent {
       .subscribe(
         ( response: ResultComic[] ) => {
           this.comics = response;
-          this.store.dispatch(loadComicsSuccess({ comics: response })); 
-        }
-      )
-    );
-  }
-
-  getStories(): void {
-    this.subscription.add( 
-      this.activatedRoute.params
-      .pipe< ApiResponse, ResultStory[] > (
-        switchMap( ({ id }) => this.marvelService.getStoriesById( id )),
-        map( ( res: any ) => res.data.results )
-      )
-      .subscribe(
-        ( response: ResultStory[] ) => {
-          this.stories = response;
-          this.store.dispatch(loadStoriesSuccess({ stories: response }));
-        }
-      )
-    );
-  }
-
-  seeCharacter() {
-    this.subscription.add( 
-      this.activatedRoute.params
-      .pipe (
-        switchMap( ({ id }) => this.marvelService.getCharacter(id) ),
-        map( ( res: any ) => res.data.results )
-      )
-      .subscribe(
-        ( response: ResultCharacter[] ) => {
-          this.character = response;
-          this.store.dispatch(loadCharactersSuccess({ characters: response }));
         }
       )
     );

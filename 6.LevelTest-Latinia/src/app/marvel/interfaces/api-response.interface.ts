@@ -14,6 +14,6 @@ export interface ApiResponse {
         limit:       number;
         total:       number;
         count:       number;
-        results: ResultCharacter[] | ResultComic[] | ResultStory[];
+        results:     any //ResultCharacter[] | ResultComic[] | ResultStory[];
     }
 }

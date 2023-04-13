@@ -10,9 +10,7 @@ import { SharedModule } from './shared/shared.module';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
-import { CHARACTER_REDUCERS } from './marvel/marvel-state/character.state';
-import { ComicsEffects } from './marvel/marvel-state/effects/comics.effects';
-import { StoriesEffects } from './marvel/marvel-state/effects/stories.effects';
+import { reducers } from './marvel/marvel-store/marvel.reducers';
 
 @NgModule({
   declarations: [
@@ -25,16 +23,9 @@ import { StoriesEffects } from './marvel/marvel-state/effects/stories.effects';
     MarvelModule,
     SharedModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot(
-      CHARACTER_REDUCERS
-    ),
-    StoreDevtoolsModule.instrument({ 
-      name: 'Marvel App' 
-    }),
-    EffectsModule.forRoot([
-      ComicsEffects, 
-      StoriesEffects
-    ])
+    StoreModule.forRoot( reducers ),
+    EffectsModule.forRoot([]),
+    StoreDevtoolsModule.instrument({ name: 'Marvel App' }),
   ],
   bootstrap: [
     AppComponent

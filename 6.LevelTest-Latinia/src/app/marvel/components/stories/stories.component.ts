@@ -7,5 +7,5 @@ import { ResultStory } from '../../interfaces/stories.interface';
   styleUrls: ['./stories.component.scss']
 })
 export class StoriesComponent {
-  @Input() stories!: ResultStory[];
+  @Input('card-stories') stories$!: ResultStory[] | null;
 }
