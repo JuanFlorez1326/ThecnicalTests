@@ -1,0 +1,8 @@
+@import './scss/main.index.scss';
+
+body { 
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif; 
+    background-color: $back-color;
+    color: $color-text;
+}
