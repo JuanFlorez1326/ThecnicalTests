@@ -1,0 +1,28 @@
+<div class="form-container">
+
+  <span class="title-new-task">New Task </span>
+
+  <form [formGroup]="todoForm" (ngSubmit)="addTodo()" class="form">
+    <mat-form-field appearance="outline">
+      <mat-label>Description</mat-label>
+      <input matInput placeholder="Description" formControlName="description" required>
+      <mat-error *ngIf="todoForm.get('description')?.hasError('required')">
+        Description is required
+      </mat-error>
+    </mat-form-field>
+      
+    <mat-form-field  appearance="outline">
+      <mat-label>Priority</mat-label>
+      <mat-select formControlName="priority">
+        <mat-option *ngFor="let item of priorityValues" [value]="item">{{ item }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="todoForm.get('priority')?.hasError('required')">
+        Priority is required
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="this.todoForm.invalid">
+      Add Task
+    </button>
+  </form>
+</div>

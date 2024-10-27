@@ -1,0 +1,23 @@
+mat-toolbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    .title-app {
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .actions-header {
+        button {
+            margin-left: 15px;
+        }
+    }
+}
+
+.active {
+    span {
+        color: rgb(55, 55, 197);
+        font-weight: bold;
+    }
+}

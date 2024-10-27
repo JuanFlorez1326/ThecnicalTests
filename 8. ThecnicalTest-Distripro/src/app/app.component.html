@@ -1,0 +1,14 @@
+<mat-toolbar>
+    <span class="title-app" [routerLink]="['/list']">Tasks App</span>
+
+    <div class="actions-header">
+        <button mat-raised-button routerLinkActive="active" [routerLink]="['/list']">
+            <span>All Tasks</span>
+        </button>
+        <button mat-raised-button routerLinkActive="active" [routerLink]="['/add']">
+            <span>Add Task</span>
+        </button>
+    </div>
+</mat-toolbar>
+  
+<router-outlet/>
